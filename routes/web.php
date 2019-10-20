@@ -21,4 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // records routes
 
 Route::resource('/Record','RecordController');
+
+//Route::get('/Profile/{profile}', 'ProfileController@show');
+//Route::get('/Profile/', 'ProfileController@index');
+Route::resource('/Profile','ProfileController');
 //Route::get('/Record/index','RecordController@index');

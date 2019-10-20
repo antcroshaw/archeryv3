@@ -19,6 +19,13 @@
                         @endcan
                         <p><a href="" >User Admin</a></p>
 
+                        <p> Here are the profiles for this user</p>
+                    @foreach($profiles as $profile)
+
+                            <p><a href="/Profile/{{ $profile->id }}">Location : {{ $profile->location }}</a></p>
+                        @endforeach
+
+
 
 
                 </div>
