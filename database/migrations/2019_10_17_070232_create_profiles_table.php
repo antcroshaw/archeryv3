@@ -15,16 +15,16 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->string('location');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('location')->nullable();
             $table->string('bow')->default('recurve');
             $table->bigInteger('handicap')->nullable();
             $table->string('classification')->nullable();
             $table->boolean('new_archer')->default('1');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

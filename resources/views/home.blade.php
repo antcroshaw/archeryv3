@@ -16,13 +16,14 @@
 
                         @can('viewAny',App\Record::class)
                         <p><a href="{{ route('Record.index') }}" >Records Admin</a></p>
+                       <p><a href="{{ route('Profile.index' ) }}">Profiles Admin</a></p>
                         @endcan
                         <p><a href="" >User Admin</a></p>
-
-                        <p> Here are the profiles for this user</p>
+<hr>
+                        <p> Here are the profiles for <strong>{{ auth()->user()->name }}</strong></p>
                     @foreach($profiles as $profile)
 
-                            <p><a href="/Profile/{{ $profile->id }}">Location : {{ $profile->location }}</a></p>
+                            <p>Location : {{ $profile->location }} | Bow Type : {{ $profile->bow }}<a href="/Profile/{{ $profile->id }}"> View </a></p>
                         @endforeach
 
 

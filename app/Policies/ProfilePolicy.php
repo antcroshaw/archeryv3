@@ -39,9 +39,11 @@ class ProfilePolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $User)
     {
-        //
+
+
+        if($User->admin == 1) {return true;} else {redirect('home');}
     }
 
     /**

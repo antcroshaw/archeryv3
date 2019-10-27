@@ -1,13 +1,37 @@
-<h1>Profile Page for {{ auth()->user()->name }}</h1>
-<p>Here is the profile link </p>
 
-@foreach ($profiles as $profile)
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Profile Admin Menu</div>
+                    <div class="card-body">
+                        <p><a href={{ route('Profile.create') }}>Create new profile</a></p>
+                        <h3>List of all Profiles</h3>
+                        @foreach($profiles as $Profile)
+                            <p>Profile ID: {{ $Profile->id }} | Location : {{ $Profile->location }} | Name: {{ $Profile->user->name}}
+                            <form action="{{ route('Profile.destroy', ['Profile' => $Profile]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
 
 
-    <p><a href="/Profile/{{ $profile->id }}">Location : {{ $profile->location }}</a></p>
+                            @endforeach
 
-    @endforeach
 
+
+                        <p><a href="/home" class="text-decoration-none"><button class="btn btn-primary" >Back to home</button></a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
 
 
 
