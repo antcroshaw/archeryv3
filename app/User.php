@@ -38,10 +38,15 @@ class User extends Authenticatable
     ];
 
    // public function records(){
-    //    return $this->hasMany(\App\Record::class);
+    //    return $this->hasMany('App\Record');
    // }
 
     public function profiles(){
         return $this->hasMany('App\Profile');
+    }
+
+    public function index(){
+
+        return(view('users.index'));
     }
 }

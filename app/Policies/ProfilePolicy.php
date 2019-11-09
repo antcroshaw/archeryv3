@@ -13,12 +13,12 @@ class ProfilePolicy
     /**
      * Determine whether the user can view any profiles.
      *
-     * @param  \App\User  $user
+     * @param User $User
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $User)
     {
-        //
+        if($User->admin == 1) {return true;} else {redirect('home');}
     }
 
     /**
@@ -36,7 +36,7 @@ class ProfilePolicy
     /**
      * Determine whether the user can create profiles.
      *
-     * @param  \App\User  $user
+     * @param User $User
      * @return mixed
      */
     public function create(User $User)

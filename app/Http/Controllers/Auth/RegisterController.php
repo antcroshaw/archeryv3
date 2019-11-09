@@ -77,6 +77,12 @@ class RegisterController extends Controller
         return $user;
     }
 
+    protected function delete(User $User) {
+        $User->delete();
+
+    }
+
+
 
 
 

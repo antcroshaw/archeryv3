@@ -12,7 +12,7 @@
 
                         <hr>
                         <form method="POST" action="{{ route('Profile.update' , ['Profile' => $Profile]) }}"  enctype="multipart/form-data">
-                            @method('PUT')
+                            @method('PATCH')
                             @include('profiles.form')
                             <button type="submit" class="btn btn-primary">Save Profile</button>
                         </form>

@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use App\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+
 
 class ProfileController extends Controller
 {
@@ -18,7 +22,7 @@ class ProfileController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -30,7 +34,7 @@ class ProfileController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -43,19 +47,13 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store()
     {
 
-        $data = request()->validate([
-            'user_id'=> 'required',
-            'location'=> 'required',
-            'bow'=> 'required',
-        ]);
-
-        Profile::create($data);
+        $profile = Profile::create($this->validateRequest());
+        $this->storeImage($profile);
 
         return redirect('/home');
     }
@@ -63,8 +61,9 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param Profile $Profile
+     * @return Response
+     * @throws AuthorizationException
      */
     public function show(Profile $Profile)
 
@@ -78,8 +77,8 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param Profile $Profile
+     * @return Response
      */
     public function edit(Profile $Profile)
     {
@@ -90,15 +89,16 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param Profile $Profile
+     * @return Response
      */
     public function update(Profile $Profile)
     {
-        $Profile->update($this->validateRequest());
 
-        //$this->storeImage($Profile);
+       $Profile->update($this->validateRequest());
+
+        $this->storeImage($Profile);
+
 
         return redirect('/home');
     }
@@ -106,8 +106,9 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param Profile $Profile
+     * @return Response
+     * @throws \Exception
      */
     public function destroy(Profile $Profile)
     {
@@ -123,7 +124,7 @@ class ProfileController extends Controller
                 'image' => request()->image->store('uploads', 'public'),
             ]);
 
-            $image = Image::make(public_path('storage/' . $Profile->image))->fit(300, 300, null, 'top-left');
+            $image = Image::make(public_path('storage/' . $Profile->image))->fit(300, 200, null, 'top-left');
             $image->save();
         }
 
@@ -132,10 +133,10 @@ class ProfileController extends Controller
     private function validateRequest()
     {
         return request()->validate([
-
+            'user_id'=> 'sometimes', // this has to be sometimes because we use the same validation for update and store, and we don't change user_id on update
             'location' => 'required|min:3',
             'bow' => 'required|min:3',
-          //  'image' => 'sometimes|file|image|max:5000',
+           'image' => 'sometimes|file|image|max:5000',
         ]);
     }
 

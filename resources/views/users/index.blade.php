@@ -6,21 +6,19 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Profile Admin Menu</div>
+                    <div class="card-header">User Admin Menu</div>
                     <div class="card-body">
-                        <p><a href={{ route('Profile.create') }}>Create new profile</a></p>
-                        <h3>List of all Profiles</h3>
-                        @foreach($profiles as $Profile)
-                            <p>Profile ID: {{ $Profile->id }} | Location : {{ $Profile->location }} | User Name: {{ $Profile->user->name}}</p>
-                            <form action="{{ route('Profile.destroy', ['Profile' => $Profile]) }}" method="POST">
+                        <p><a href={{ route('User.create') }}>Create new user</a></p>
+                        <h3>List of all Users</h3>
+                        @foreach($users as $User)
+                            <p>User ID: {{ $User->id }} |  User Name: {{ $User->name}}</p>
+                            <form action="{{ route('User.destroy', ['User' => $User]) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
 
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
-
-
-                            @endforeach
+                        @endforeach
 
 
 
