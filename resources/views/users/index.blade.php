@@ -19,7 +19,10 @@
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
                         @endforeach
-
+                        <hr>
+                        <div class="row">
+                            {{ $users->links() }}
+                        </div>
 
 
                         <p><a href="/home" class="text-decoration-none"><button class="btn btn-primary" >Back to home</button></a></p>

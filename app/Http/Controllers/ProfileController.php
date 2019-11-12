@@ -26,7 +26,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::all();
+        $profiles = Profile::paginate(5);
        return(view('profiles.index',compact('profiles')));
 
     }
@@ -82,6 +82,7 @@ class ProfileController extends Controller
      */
     public function edit(Profile $Profile)
     {
+       // $this->authorize('update',$Profile);
         $User = \App\User::find(auth()->user()->id);
         return (view('profiles.edit',compact('Profile','User')));
     }

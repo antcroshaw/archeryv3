@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     protected function index() {
 
-        $users = User::all();
+        $users = User::paginate(5);
         return(view('users.index',compact('users')));
     }
 

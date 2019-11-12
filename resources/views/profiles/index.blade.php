@@ -23,7 +23,10 @@
                             @endforeach
 
 
-
+<hr>
+                        <div class="row">
+                            {{ $profiles->links() }}
+                        </div>
                         <p><a href="/home" class="text-decoration-none"><button class="btn btn-primary" >Back to home</button></a></p>
 
                     </div>

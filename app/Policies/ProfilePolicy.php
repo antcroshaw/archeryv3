@@ -16,9 +16,9 @@ class ProfilePolicy
      * @param User $User
      * @return mixed
      */
-    public function viewAny(User $User)
+    public function viewAny(User $IsAdmin)
     {
-        if($User->admin == 1) {return true;} else {redirect('home');}
+        if($IsAdmin->admin == 1) {return true;} else {redirect('home');}
     }
 
     /**
@@ -28,34 +28,34 @@ class ProfilePolicy
      * @param  \App\Profile  $profile
      * @return mixed
      */
-    public function view(User $user, Profile $profile)
+    public function view(User $User, Profile $profile)
     {
-        if($user->id == $profile->user_id) {return true;} else { redirect('home');}
+        if($User->id == $profile->user_id) {return true;} else { redirect('home');}
     }
 
     /**
      * Determine whether the user can create profiles.
      *
-     * @param User $User
+     * @param User $IsAdmin
      * @return mixed
      */
-    public function create(User $User)
+    public function create(User $IsAdmin)
     {
 
 
-        if($User->admin == 1) {return true;} else {redirect('home');}
+        if($IsAdmin->admin == 1) {return true;} else {redirect('home');}
     }
 
     /**
      * Determine whether the user can update the profile.
      *
-     * @param  \App\User  $user
-     * @param  \App\Profile  $profile
+     * @param User $User
+     * @param \App\Profile $profile
      * @return mixed
      */
-    public function update(User $user, Profile $profile)
+    public function update(User $User, Profile $profile)
     {
-        //
+       // if($User->id == $profile->user_id) {return true;} else { redirect('home');}
     }
 
     /**
