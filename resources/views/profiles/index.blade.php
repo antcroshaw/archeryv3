@@ -10,17 +10,24 @@
                     <div class="card-body">
                         <p><a href={{ route('Profile.create') }}>Create new profile</a></p>
                         <h3>List of all Profiles</h3>
-                        @foreach($profiles as $Profile)
+                        @forelse($profiles as $Profile)
                             <p>Profile ID: {{ $Profile->id }} | Location : {{ $Profile->location }} | User Name: {{ $Profile->user->name}}</p>
                             <form action="{{ route('Profile.destroy', ['Profile' => $Profile]) }}" method="POST">
-                                @method('DELETE')
+                                @method('UPDATE')
                                 @csrf
 
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
+                            <form action="{{ route('Profile.edit', ['Profile' => $Profile]) }}" method="POST">
+                                @method('PATCH')
+                                @csrf
 
+                                <button class="btn btn-primary" type="submit">Edit</button>
+                            </form>
+                            @empty
+                            <p>No profiles added yet!</p>
 
-                            @endforeach
+                            @endforelse
 
 
 <hr>
