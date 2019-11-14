@@ -18,6 +18,7 @@
                             <p><a href="{{ route('Record.index') }}">Records Admin</a></p>
                             <p><a href="{{ route('Profile.index' ) }}">Profiles Admin</a></p>
                             <p><a href="{{ route('User.index') }}">User Admin</a></p>
+                            <p><a href="{{ route('Season.index') }}">Season Admin</a></p>
                         @endcan
 
                         <hr>
