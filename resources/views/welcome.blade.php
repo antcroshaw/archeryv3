@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Ants Test Site for Archery V3
                 </div>
 
                 <div class="links">

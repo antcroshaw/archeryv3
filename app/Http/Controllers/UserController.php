@@ -37,7 +37,7 @@ class UserController extends Controller
             'admin' => $data['admin'],
         ]);
         event(new NewUserHasRegistered($user->id));
-        $users = User::all();
+        $users = User::paginate(5);
         return (view('users.index',compact('users')));
     }
 
@@ -48,6 +48,19 @@ class UserController extends Controller
 
         $User->delete();
         $users = User::all();
+        return(view('users.index',compact('users')));
+    }
+
+    public function edit(User $User) {
+
+        return view('users.edit', compact('User'));
+    }
+
+    public function update(User $User) {
+
+        $data = request()->all();
+        $User->update($data);
+        $users = User::paginate(5);
         return(view('users.index',compact('users')));
     }
 

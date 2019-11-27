@@ -18,12 +18,7 @@
 
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
-                            <form action="{{ route('Profile.edit', ['Profile' => $Profile]) }}" method="POST">
-                                @method('PATCH')
-                                @csrf
-
-                                <button class="btn btn-primary" type="submit">Edit</button>
-                            </form>
+                            <p><a href="{{ route('Profile.edit', ['Profile' => $Profile]) }}">Edit</a></p>
                             @empty
                             <p>No profiles added yet!</p>
 

@@ -12,6 +12,7 @@
                         <h3>List of all Users</h3>
                         @foreach($users as $User)
                             <p>User ID: {{ $User->id }} |  User Name: {{ $User->name}}</p>
+                        <p><a href="{{ route('User.edit', ['User' => $User]) }}">Edit User</a></p>
                             <form action="{{ route('User.destroy', ['User' => $User]) }}" method="POST">
                                 @method('DELETE')
                                 @csrf

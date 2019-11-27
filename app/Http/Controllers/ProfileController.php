@@ -100,8 +100,8 @@ class ProfileController extends Controller
 
         $this->storeImage($Profile);
 
-
-        return redirect('/home');
+        $profiles = Profile::paginate(5);
+        return(view('profiles.index',compact('profiles')));
     }
 
     /**

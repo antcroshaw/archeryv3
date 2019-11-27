@@ -5,9 +5,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Edit {{ ucfirst($Profile->location) }} profile for {{ $User->name  }}</div>
+                    <div class="card-header">Edit {{ ucfirst($Profile->location) }} profile for {{ $Profile->user->name }}</div>
                     <div class="card-body">
-                        <p><strong>Email: </strong> {{ $User->email }}</p>
+                        <p><strong>Email: </strong> {{ $Profile->user->email }}</p>
                         <p><strong>Bow: </strong>{{ $Profile->bow }}</p>
 
                         <hr>
