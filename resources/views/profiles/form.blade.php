@@ -1,12 +1,21 @@
 <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" name="location" value="{{ old('location') ?? $Profile->location }}" class="form-control">
+    <label for="name">Location</label>
+    <p><select name="location" id="location">
+            <option value="">Select Location</option>
+            <option value="outdoor" @if($Profile->location == 'outdoor') selected @endif >Outdoor</option>
+            <option value="indoor" @if($Profile->location == 'indoor') selected @endif >Indoor</option>
+        </select></p>
     <div>{{ $errors->first('location') }}</div>
 </div>
 
 <div class="form-group">
     <label for="bow">Bow Type</label>
-    <input type="text" name="bow" value="{{ old('email') ?? $Profile->bow }}" class="form-control">
+    <p><select name="bow" id="bow">
+            <option  value="">Select Bow Type</option>
+            <option value="recurve" @if($Profile->bow == 'recurve') selected @endif >Recurve</option>
+            <option value="barebow" @if($Profile->bow == 'barebow') selected @endif >Barebow</option>
+            <option value="compound" @if($Profile->bow == 'compound') selected @endif >Compound</option>
+        </select></p>
     <div>{{ $errors->first('bow') }}</div>
 </div>
 

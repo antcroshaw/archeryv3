@@ -26,8 +26,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::paginate(5);
-       return(view('profiles.index',compact('profiles')));
+        $Profiles = Profile::paginate(5);
+       return(view('profiles.index',compact('Profiles')));
 
     }
 
@@ -100,8 +100,8 @@ class ProfileController extends Controller
 
         $this->storeImage($Profile);
 
-        $profiles = Profile::paginate(5);
-        return(view('profiles.index',compact('profiles')));
+        $Profiles = Profile::paginate(5);
+        return(view('profiles.index',compact('Profiles')));
     }
 
     /**

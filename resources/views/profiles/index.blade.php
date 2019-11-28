@@ -10,13 +10,14 @@
                     <div class="card-body">
                         <p><a href={{ route('Profile.create') }}>Create new profile</a></p>
                         <h3>List of all Profiles</h3>
-                        @forelse($profiles as $Profile)
-                            <p>Profile ID: {{ $Profile->id }} | Location : {{ $Profile->location }} | User Name: {{ $Profile->user->name}}</p>
+                        @forelse($Profiles as $Profile)
+                            <p>Profile ID: {{ $Profile->id }} | Location : {{ $Profile->location }} | User Name: {{ $Profile->user->name}} |
+                                <a href="{{ route('Profile.show', ['Profile' => $Profile]) }}">View</a></p>
                             <form action="{{ route('Profile.destroy', ['Profile' => $Profile]) }}" method="POST">
-                                @method('UPDATE')
+                                @method('DELETE')
                                 @csrf
 
-                                <button class="btn btn-danger" type="submit">Delete</button>
+                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Delete</button>
                             </form>
                             <p><a href="{{ route('Profile.edit', ['Profile' => $Profile]) }}">Edit</a></p>
                             @empty
@@ -27,7 +28,7 @@
 
 <hr>
                         <div class="row">
-                            {{ $profiles->links() }}
+                            {{ $Profiles->links() }}
                         </div>
                         <p><a href="/home" class="text-decoration-none"><button class="btn btn-primary" >Back to home</button></a></p>
 

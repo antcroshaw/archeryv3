@@ -11,8 +11,8 @@ class UserController extends Controller
 {
     protected function index() {
 
-        $users = User::paginate(5);
-        return(view('users.index',compact('users')));
+        $Users = User::paginate(5);
+        return(view('users.index',compact('Users')));
     }
 
     public function create()
@@ -22,23 +22,23 @@ class UserController extends Controller
         $this->authorize('create',$IsAdmin);
         //end of auth section
 
-        $users = User::all();
-        return view('users.create' ,compact('users'));
+
+        return view('users.create');
     }
 
     protected function store()
     {
 
         $data = request()->all();
-        $user =  User::create([
+        $User =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'admin' => $data['admin'],
         ]);
-        event(new NewUserHasRegistered($user->id));
-        $users = User::paginate(5);
-        return (view('users.index',compact('users')));
+        event(new NewUserHasRegistered($User->id));
+
+        return view('users.show', compact('User'));
     }
 
     public function destroy(User $User)
@@ -47,8 +47,9 @@ class UserController extends Controller
         $this->authorize('delete',$IsAdmin);
 
         $User->delete();
-        $users = User::all();
-        return(view('users.index',compact('users')));
+
+        $Users = User::paginate(5);
+        return view('users.index', compact('Users'));
     }
 
     public function edit(User $User) {
@@ -60,8 +61,12 @@ class UserController extends Controller
 
         $data = request()->all();
         $User->update($data);
-        $users = User::paginate(5);
-        return(view('users.index',compact('users')));
+        $Users = User::paginate(5);
+        return(view('users.index',compact('Users')));
+    }
+
+    public function show(User $User){
+        return view('users.show', compact('User'));
     }
 
 }

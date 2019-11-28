@@ -19,7 +19,8 @@
 
 
                         <p><a href="/Profile/{{ $Profile->id }}/edit">Edit Profile</a></p>
-                        <p><a href="/home" class="text-decoration-none"><button class="btn-link" >Back to home</button></a></p>
+                            <hr>
+                            <p><a href="/home" class="text-decoration-none"><button class="btn btn-primary" >Back to home</button></a></p>
 
                     </div>
                 </div>

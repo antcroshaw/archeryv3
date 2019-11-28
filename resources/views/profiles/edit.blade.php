@@ -9,6 +9,7 @@
                     <div class="card-body">
                         <p><strong>Email: </strong> {{ $Profile->user->email }}</p>
                         <p><strong>Bow: </strong>{{ $Profile->bow }}</p>
+                        <p><strong>Location: </strong> {{ $Profile->location }}</p>
 
                         <hr>
                         <form method="POST" action="{{ route('Profile.update' , ['Profile' => $Profile]) }}"  enctype="multipart/form-data">
