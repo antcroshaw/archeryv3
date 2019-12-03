@@ -19,6 +19,7 @@ class CreateSeasonsTable extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->boolean('active')->default('0');
+            $table->string('location')->default('outdoor');
             $table->timestamps();
         });
     }

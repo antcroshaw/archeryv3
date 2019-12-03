@@ -11,17 +11,25 @@
                         <p><a href={{ route('Season.create') }}>Create new season</a></p>
                         <h3>List of all Seasons</h3>
                         @forelse($Seasons as $Season)
-                            <p>Season ID: {{ $Season->id }} | Name : {{ $Season->name }} | Start Date :  {{ $Season->start_date }}</p>
-                            <form action="{{ route('Season.destroy', ['Season' => $Season]) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
+                            <p>Name : {{ $Season->name }} | Active: {{ $Season->active }} | Location : {{ ucfirst($Season->location) }} | Start :  {{ $Season->start_date }} | End :  {{ $Season->end_date }}
+                                <a href="{{ route('Season.show', ['Season' => $Season]) }}">View</a></p>
+                            <div class="row col-12">
 
-                                <button class="btn btn-danger" type="submit">Delete</button>
-                            </form>
+
+                                <a  href="{{ route('Season.start',['Season' => $Season]) }}">Start </a>&nbsp; |
+                                <a  href="{{ route('Season.end',['Season' => $Season]) }}"> &nbsp;End</a>
+
+                            </div>
+
                             @empty
                             <p>No seasons added yet!</p>
 
                             @endforelse
+
+                        @if(Session::has('message'))
+                            <hr>
+                            <p class="alert-warning">{{ Session::get('message') }}</p>
+                        @endif
 
 
 <hr>

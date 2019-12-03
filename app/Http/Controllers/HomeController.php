@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactUs;
 use App\User;
 use App\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -15,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('index');
     }
 
     /**
@@ -30,4 +32,6 @@ class HomeController extends Controller
         $profiles = $user->profiles;
         return view('home',compact('profiles'));
     }
+
+
 }

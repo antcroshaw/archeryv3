@@ -11,10 +11,26 @@
 |
 */
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/email', function() {
+    return new \App\Mail\ContactUs();
+});
+
+Route::post('/contact', function(Request $request)  {Mail::send(new \App\Mail\ContactUs($request)); return redirect('/');});
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/Contact', function () {
+    return view('contact');
+});
+
+Route::get('/Season/start/{Season}', 'SeasonController@startSeason')->name('Season.start');
+Route::get('/Season/end/{Season}', 'SeasonController@endSeason')->name('Season.end');
+Route::post('/Contact', 'HomeController@contact');
 //Auth::routes();
 Auth::routes(['verify' => true, 'register' => true]);
 
@@ -24,11 +40,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/Record','RecordController');
 Route::resource('/Season','SeasonController');
 Route::resource('/User','UserController');
-//Route::get('/Profile/{profile}', 'ProfileController@show');
-//Route::get('/Profile/', 'ProfileController@index');
+
 Route::resource('/Profile','ProfileController');
-//Route::get('/Record/index','RecordController@index');
-//Route::get('/home/user','UserController@index')->name('users');
-//Route::get('/home/user/create','UserController@create')->name('user_create');
-//Route::post('/home/user/{data}','UserController@store')->name('user_store');
-//Route::post('/home/user/{User}','UserController@destroy')->name('user_destroy');
+
+
+

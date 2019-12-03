@@ -4,6 +4,7 @@
             <option value="">Select Location</option>
             <option value="outdoor" @if($Profile->location == 'outdoor') selected @endif >Outdoor</option>
             <option value="indoor" @if($Profile->location == 'indoor') selected @endif >Indoor</option>
+
         </select></p>
     <div>{{ $errors->first('location') }}</div>
 </div>

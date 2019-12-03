@@ -1,19 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Create New Season</div>
+                    <div class="card-header">Edit Season {{ $Season->name }}</div>
                     <div class="card-body">
 
 
                         <hr>
-                        <form method="POST" action="{{route('Season.store')}}"  enctype="multipart/form-data">
+                        <form method="POST" action="{{route('Season.update', ['Season' => $Season])}}"  enctype="multipart/form-data">
+                            @method('PATCH')
                             <div class="form-group">
                                 <label for="name">Name of Season</label>
-                              <input name="name" class="input-sm">
+                              <input name="name" class="input-sm" value="{{ $Season->name }}">
 
                             </div>
 
@@ -31,7 +33,7 @@
 
 
                             @csrf
-                            <button type="submit" name="submit" class="btn btn-primary">Create New Season</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Update Season</button>
                         <hr>
                         </form>
 

@@ -20,6 +20,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\NewUserHasRegistered' => [
             'App\Listeners\AddNewProfiles',
         ],
+        'App\Events\SeasonStart' => [
+            'App\Listeners\SetSeasonStart',
+        ],
+        'App\Events\SeasonEnd' => [
+            'App\Listeners\SetSeasonEnd',
+        ],
     ];
 
     /**

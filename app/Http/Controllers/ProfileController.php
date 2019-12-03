@@ -40,8 +40,9 @@ class ProfileController extends Controller
     {
 
         //need to send an object with all the user info in
-        $user = User::all();
-        return view('profiles.create' ,compact('user'));
+        $User = User::all();
+        $Profile = new Profile();
+        return view('profiles.create' ,compact('User','Profile'));
     }
 
     /**
