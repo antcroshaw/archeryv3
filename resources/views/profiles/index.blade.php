@@ -13,12 +13,7 @@
                         @forelse($Profiles as $Profile)
                             <p>Profile ID: {{ $Profile->id }} | Location : {{ $Profile->location }} | User Name: {{ $Profile->user->name}} |
                                 <a href="{{ route('Profile.show', ['Profile' => $Profile]) }}">View</a></p>
-                            <form action="{{ route('Profile.destroy', ['Profile' => $Profile]) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
 
-                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Delete</button>
-                            </form>
                             <p><a href="{{ route('Profile.edit', ['Profile' => $Profile]) }}">Edit</a></p>
                             @empty
                             <p>No profiles added yet!</p>

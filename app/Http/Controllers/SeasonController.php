@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Events\SeasonStart;
 use App\Events\SeasonEnd;
 use App\Season;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Carbon\Carbon;
+use Illuminate\View\View;
 
 class SeasonController extends Controller
 {
@@ -48,7 +50,7 @@ class SeasonController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -60,28 +62,34 @@ class SeasonController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function store(Request $request)
     {
 
 
-        $season = Season::create($this->validateRequest());
+        $Season = Season::create($this->validateRequest());
         $Seasons = Season::all();
+        $diff = 0;
+        if($Season->start_date && $Season->end_date){
+            $diff = $this->lengthSeason($Season);}
 
-        return view('seasons.index',compact('Seasons'));
+        return view('seasons.show',compact('Season','diff'));
     }
 
     /**
      * Display the specified resource.
      *
      * @param Season $Season
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function show(Season $Season)
 
     {
-        $diff = $this->lengthSeason($Season);
+        $diff = 0;
+        if($Season->start_date && $Season->end_date){
+        $diff = $this->lengthSeason($Season);}
+
         return view('seasons.show', compact('Season','diff'));
     }
 
@@ -89,7 +97,7 @@ class SeasonController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Season  $season
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function edit(Season $Season)
     {
@@ -102,13 +110,15 @@ class SeasonController extends Controller
      *
      * @param Request $request
      * @param  \App\Season  $season
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function update(Season $Season)
     {
 
         $Season->update($this->validateRequest());
-        $diff = $this->lengthSeason($Season);
+        $diff = 0;
+        if($Season->start_date && $Season->end_date){
+            $diff = $this->lengthSeason($Season);}
 
         return view('seasons.show', compact('Season','diff'));
     }
@@ -117,7 +127,7 @@ class SeasonController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Season  $season
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function destroy(Season $Season)
     {

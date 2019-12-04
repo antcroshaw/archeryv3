@@ -13,12 +13,7 @@
                         @foreach($Users as $User)
                             <p>User ID: {{ $User->id }} |  User Name: {{ $User->name}} | <a href="{{ route('User.show',['User' => $User]) }}">View</a></p>
                         <p><a href="{{ route('User.edit', ['User' => $User]) }}">Edit User</a></p>
-                            <form action="{{ route('User.destroy', ['User' => $User]) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
 
-                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Delete</button>
-                            </form>
                         @endforeach
                         <hr>
                         <div class="row">

@@ -15,6 +15,12 @@
 
 
                         <p><a href="/User/{{ $User->id }}/edit">Edit User</a></p>
+                        <p> <form action="{{ route('User.destroy', ['User' => $User]) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+
+                            <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Delete</button>
+                        </form></p>
                         <hr>
                         <p><a href="/home" class="text-decoration-none"><button class="btn btn-primary" >Back to home</button></a></p>
 

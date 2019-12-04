@@ -53,10 +53,10 @@ class ProfileController extends Controller
     public function store()
     {
 
-        $profile = Profile::create($this->validateRequest());
-        $this->storeImage($profile);
+        $Profile = Profile::create($this->validateRequest());
+        $this->storeImage($Profile);
 
-        return redirect('/home');
+        return (view('profiles.show',compact('Profile')));
     }
 
     /**
@@ -70,9 +70,8 @@ class ProfileController extends Controller
 
     {
         //need to check user_id of profile against authorised user_id
-        $this->authorize('view',$Profile);
-        $User = \App\User::find(auth()->user()->id);
-        return (view('profiles.show',compact('Profile','User')));
+        //$this->authorize('view',$Profile);
+        return (view('profiles.show',compact('Profile')));
     }
 
     /**
@@ -84,8 +83,8 @@ class ProfileController extends Controller
     public function edit(Profile $Profile)
     {
        // $this->authorize('update',$Profile);
-        $User = \App\User::find(auth()->user()->id);
-        return (view('profiles.edit',compact('Profile','User')));
+
+        return (view('profiles.edit',compact('Profile')));
     }
 
     /**
@@ -101,8 +100,8 @@ class ProfileController extends Controller
 
         $this->storeImage($Profile);
 
-        $Profiles = Profile::paginate(5);
-        return(view('profiles.index',compact('Profiles')));
+
+        return(view('profiles.show',compact('Profile')));
     }
 
     /**

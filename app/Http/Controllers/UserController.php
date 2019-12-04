@@ -65,8 +65,7 @@ class UserController extends Controller
 
         $data = request()->all();
         $User->update($data);
-        $Users = User::paginate(5);
-        return(view('users.index',compact('Users')));
+        return(view('users.show',compact('User')));
     }
 
     public function show(User $User){

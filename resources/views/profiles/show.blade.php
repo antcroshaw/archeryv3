@@ -12,15 +12,21 @@
                                 <div class="col-12"><img src="{{ asset('storage/' . $Profile->image) }}" alt="" class="img-thumbnail"></div>
                             </div>
                         @endif
-                        <p><strong>Email: </strong> {{ $User->email }}</p>
+                        <p><strong>Email: </strong> {{ $Profile->user->email }}</p>
                         <p><strong>Bow: </strong>{{ $Profile->bow }}</p>
 
 
 
 
                         <p><a href="/Profile/{{ $Profile->id }}/edit">Edit Profile</a></p>
+                            <p><form action="{{ route('Profile.destroy', ['Profile' => $Profile]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')" type="submit">Delete</button>
+                            </form></p>
                             <hr>
-                            <p><a href="/home" class="text-decoration-none"><button class="btn btn-primary" >Back to home</button></a></p>
+                            <p><a href="{{ route('Profile.index') }}" class="text-decoration-none"><button class="btn btn-primary" >Back to Profiles</button></a></p>
 
                     </div>
                 </div>
