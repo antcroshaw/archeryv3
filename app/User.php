@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','admin','bowtype','dob'
+        'name', 'email', 'password','admin','bowtype','dob','sex'
     ];
 
     /**
@@ -43,6 +43,9 @@ class User extends Authenticatable
 
     public function profiles(){
         return $this->hasMany('App\Profile');
+    }
+    public function records(){
+        return $this->hasMany('App\Record');
     }
 
     public function index(){

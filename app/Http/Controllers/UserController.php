@@ -37,6 +37,8 @@ class UserController extends Controller
         $User =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'dob' => $data['dob'],
+            'sex' => $data['sex'],
             'password' => Hash::make($data['password']),
             'admin' => $data['admin'],
         ]);

@@ -10,6 +10,8 @@
 
                         <p><strong>Email: </strong> {{ $User->email }}</p>
                         <p><strong>Name: </strong>{{ $User->name }}</p>
+                        <p><strong>Date of Birth: </strong>{{ $User->dob }}</p>
+                        <p><strong>Sex: </strong>{{ $User->sex }}</p>
 
 
 

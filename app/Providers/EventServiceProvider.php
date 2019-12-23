@@ -26,6 +26,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SeasonEnd' => [
             'App\Listeners\SetSeasonEnd',
         ],
+        'App\Events\AddRecord' => [
+            'App\Listeners\CalculateHandicapClassification',
+
+        ],
     ];
 
     /**

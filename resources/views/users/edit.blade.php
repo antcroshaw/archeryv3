@@ -46,6 +46,37 @@
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Date of Birth</label>
+
+                                <div class="col-md-6">
+                                    <input id="dob" type="date"
+                                           class="form-control @error('dob') is-invalid @enderror" name="dob"
+                                           value="{{ $User->dob }}" required autocomplete="dob" autofocus>
+
+                                    @error('dob')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="sex"
+                                       class="col-md-4 col-form-label text-md-right">Sex of User</label>
+
+                                <div class="col-md-6">
+                                    <select class="form-control"name="sex">
+
+                                        <option value="male" @if($User->sex == 'male') selected @endif>Male</option>
+                                        <option value="female" @if($User->sex == 'female') selected @endif>Female</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
 
                             <div class="form-group row">
                                 <label for="admin"
